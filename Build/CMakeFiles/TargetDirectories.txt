@@ -1,0 +1,7 @@
+/home/pi/GPIOMonitor/Build/CMakeFiles/install/strip.dir
+/home/pi/GPIOMonitor/Build/CMakeFiles/install.dir
+/home/pi/GPIOMonitor/Build/CMakeFiles/list_install_components.dir
+/home/pi/GPIOMonitor/Build/CMakeFiles/install/local.dir
+/home/pi/GPIOMonitor/Build/CMakeFiles/rebuild_cache.dir
+/home/pi/GPIOMonitor/Build/CMakeFiles/edit_cache.dir
+/home/pi/GPIOMonitor/Build/CMakeFiles/GPIOMonitor.dir

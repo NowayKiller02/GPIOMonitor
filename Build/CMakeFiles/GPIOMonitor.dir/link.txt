@@ -1,0 +1,1 @@
+/usr/bin/cc -rdynamic CMakeFiles/GPIOMonitor.dir/main.c.o -o GPIOMonitor  -lPJ_RPI -lmariadb 
