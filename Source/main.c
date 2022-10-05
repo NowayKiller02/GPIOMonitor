@@ -81,6 +81,10 @@ int main(int argc, char **argv)
                 printf("GPIO26 switched to high\n");
                 inp26 = true;
                 // add to database
+                if (mysql_query(con, "INSERT INTO `GPIOLoggings`.`logs` (`GPIO`, `state`) VALUES ('26', '1');"))
+                {
+                    finish_with_error(con);
+                }
             }
         }
         else
@@ -90,6 +94,10 @@ int main(int argc, char **argv)
                 printf("GPIO26 switched to low\n");
                 inp26 = false;
                 // add to database
+                if (mysql_query(con, "INSERT INTO `GPIOLoggings`.`logs` (`GPIO`, `state`) VALUES ('26', '0');"))
+                {
+                    finish_with_error(con);
+                }
             }
         }
         /////////////
@@ -102,6 +110,10 @@ int main(int argc, char **argv)
                 printf("GPIO10 switched to high\n");
                 inp10 = true;
                 // add to database
+                if (mysql_query(con, "INSERT INTO `GPIOLoggings`.`logs` (`GPIO`, `state`) VALUES ('10', '1');"))
+                {
+                    finish_with_error(con);
+                }
             }
         }
         else
@@ -111,6 +123,10 @@ int main(int argc, char **argv)
                 printf("GPIO10 switched to low\n");
                 inp10 = false;
                 // add to database
+                if (mysql_query(con, "INSERT INTO `GPIOLoggings`.`logs` (`GPIO`, `state`) VALUES ('10', '0');"))
+                {
+                    finish_with_error(con);
+                }
             }
         }
         sleep(1);
