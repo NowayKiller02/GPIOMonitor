@@ -39,6 +39,8 @@ stdio.h
 -
 stdbool.h
 -
+stdio.h
+-
 
 /usr/include/mariadb/ma_list.h
 

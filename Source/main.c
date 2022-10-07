@@ -2,6 +2,7 @@
 #include "PJ_RPI.h"
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 void finish_with_error(MYSQL *con)
 {
@@ -11,6 +12,22 @@ void finish_with_error(MYSQL *con)
 }
 int main(int argc, char **argv)
 {
+    char password[50];
+
+    if (argc < 2) // Check enough arguments we're supplied
+    {
+        fprintf(stderr, "You didn't give the password argument...\n");
+        exit(EXIT_FAILURE);
+    }
+
+    // Check the arguments
+    int i;
+    for (i = 1; i < argc; i++) // argc is always >=1 as the first argument is always the programs name
+    {
+        ++argv;
+        sprintf(password, "%s", *argv);
+    }
+
     bool inp17 = false;
     bool inp26 = false;
     bool inp10 = false;
@@ -22,9 +39,9 @@ int main(int argc, char **argv)
     }
 
     // Define a few GPIO's as input
-    INP_GPIO(17); // black
-    INP_GPIO(26); // yellow
-    INP_GPIO(10); // red
+    INP_GPIO(17); // black cable
+    INP_GPIO(26); // yellow cable
+    INP_GPIO(10); // red cable
 
     MYSQL *con = mysql_init(NULL);
     printf("MySQL client version: %s\n", mysql_get_client_info());
@@ -33,7 +50,7 @@ int main(int argc, char **argv)
         fprintf(stderr, "%s\n", mysql_error(con));
         exit(1);
     }
-    if (mysql_real_connect(con, "localhost", "webuser", "secretpassword_vives", "GPIOLoggings", 0, NULL, 0) == NULL)
+    if (mysql_real_connect(con, "localhost", "webuser", password, "GPIOLoggings", 0, NULL, 0) == NULL)
     {
         fprintf(stderr, "%s\n", mysql_error(con));
         mysql_close(con);
