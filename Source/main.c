@@ -12,11 +12,12 @@ void finish_with_error(MYSQL *con)
 }
 int main(int argc, char **argv)
 {
+    char host[50];
     char password[50];
 
-    if (argc < 2) // Check enough arguments we're supplied
+    if (argc < 3) // Check enough arguments we're supplied
     {
-        fprintf(stderr, "You didn't give the password argument...\n");
+        fprintf(stderr, "You didn't give the hostname and password argument...\n");
         exit(EXIT_FAILURE);
     }
 
@@ -25,7 +26,10 @@ int main(int argc, char **argv)
     for (i = 1; i < argc; i++) // argc is always >=1 as the first argument is always the programs name
     {
         ++argv;
-        sprintf(password, "%s", *argv);
+        if(i==1)
+            sprintf(host, "%s", *argv);
+        if(i==2)
+            sprintf(password, "%s", *argv);
     }
 
     bool inp17 = false;
@@ -50,7 +54,7 @@ int main(int argc, char **argv)
         fprintf(stderr, "%s\n", mysql_error(con));
         exit(1);
     }
-    if (mysql_real_connect(con, "localhost", "webuser", password, "GPIOLoggings", 0, NULL, 0) == NULL)
+    if (mysql_real_connect(con, host, "webuser", password, "GPIOLoggings", 0, NULL, 0) == NULL)
     {
         fprintf(stderr, "%s\n", mysql_error(con));
         mysql_close(con);
